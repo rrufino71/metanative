@@ -1,5 +1,4 @@
 import { Tabs } from "expo-router";
-import { View } from "react-native";
 import { HomeIcon, InfoIcon, SignInIcon } from "../../components/Icons";
 
 export default function TabsLayout() {
@@ -28,6 +27,7 @@ export default function TabsLayout() {
           tabBarInactiveTintColor: "white",
         }}
       />
+
       <Tabs.Screen
         name="signin"
         options={{
