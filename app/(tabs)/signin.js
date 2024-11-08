@@ -48,11 +48,11 @@ export default function SignIn() {
     validation = onValidate(form);
     const { email, password } = form;
     if (!validation) {
-      //      const handleLogin = async (email, password) => {
       const result = await getLogin({ email: email, password: password });
-      //Alert.alert("Status Resultado", result.message);
       setResponse(result);
-      //      };
+      if (result.status) {
+        Alert.alert(`Bienvenido ${result.message.name}, logueo exitoso`);
+      } else console.error(result.message);
     }
   };
 
@@ -88,9 +88,11 @@ export default function SignIn() {
       <View className="mt-10 p-10 b-1">
         <Button title="Login" onPress={onSubmit} />
       </View>
-      {response && (
-        <Text style={styles.error}>Respuesta: {JSON.stringify(response)}</Text>
-      )}
+      {/* {response && (
+          <Text style={styles.error}>
+            Respuesta: {JSON.stringify(response)}
+          </Text>
+        )} */}
     </Screen>
   );
 }
