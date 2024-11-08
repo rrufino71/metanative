@@ -1,7 +1,10 @@
 import { Text, TextInput, View, StyleSheet, Button, Alert } from "react-native";
+import { useState } from "react";
 import { Screen } from "../../components/Screen";
 import { useForm } from "../hooks/useForm";
 import { MAIL_VALIDATION, PASS_VALIDATION } from "../services/config";
+import { getLogin } from "../../lib/auth";
+import { ScrollView } from "react-native-web";
 
 export default function SignIn() {
   const initialData = {
@@ -9,6 +12,11 @@ export default function SignIn() {
     password: "",
     errors: {},
   };
+
+  const { form, errors, loading, setLoading, setErrors, handleChange } =
+    useForm(initialData, onValidate);
+
+  const [response, setResponse] = useState(null);
 
   const onValidate = (form) => {
     let isError = false;
@@ -35,25 +43,18 @@ export default function SignIn() {
     return isError ? errors : null;
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     let validation = false;
     validation = onValidate(form);
+    const { email, password } = form;
     if (!validation) {
-      Alert.alert(
-        "Resultado del login",
-        `Username: ${form.email}\nPassword: ${form.password}\n`
-      );
+      //      const handleLogin = async (email, password) => {
+      const result = await getLogin({ email: email, password: password });
+      //Alert.alert("Status Resultado", result.message);
+      setResponse(result);
+      //      };
     }
-    // } else {
-    //   Alert.alert(
-    //     "Resultado del login",
-    //     `Validacion: ${validation.email} ${validation.password}`
-    //   );
-    // }
   };
-
-  const { form, errors, loading, setLoading, setErrors, handleChange } =
-    useForm(initialData, onValidate);
 
   return (
     <Screen>
@@ -87,6 +88,9 @@ export default function SignIn() {
       <View className="mt-10 p-10 b-1">
         <Button title="Login" onPress={onSubmit} />
       </View>
+      {response && (
+        <Text style={styles.error}>Respuesta: {JSON.stringify(response)}</Text>
+      )}
     </Screen>
   );
 }
