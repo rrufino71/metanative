@@ -20,41 +20,41 @@ export default function About() {
           </StyledPressable>
         </Link>
 
-        <Text className="text-white font-bold mb-8 text-2xl">
+        <Text className="text-black font-bold mb-8 text-2xl">
           Sobre el proyecto
         </Text>
 
-        <Text className="text-white/90 mb-4">
+        <Text className="text-black/90 mb-4">
           Mollit dolore exercitation fugiat ea sunt magna. Eiusmod irure fugiat
           velit nulla ea amet incididunt exercitation id ea irure ex consectetur
           ex. Ullamco ullamco ea excepteur excepteur elit ad veniam. Est commodo
           mollit veniam veniam nisi et tempor esse. Nisi fugiat aliquip dolor
         </Text>
-        <Text className="text-white/90 mb-4">
+        <Text className="text-black/90 mb-4">
           Mollit dolore exercitation fugiat ea sunt magna. Eiusmod irure fugiat
           velit nulla ea amet incididunt exercitation id ea irure ex consectetur
           ex. Ullamco ullamco ea excepteur excepteur elit ad veniam. Est commodo
           mollit veniam veniam nisi et tempor esse. Nisi fugiat aliquip dolor
         </Text>
-        <Text className="text-white/90 mb-4">
+        <Text className="text-black/90 mb-4">
           Mollit dolore exercitation fugiat ea sunt magna. Eiusmod irure fugiat
           velit nulla ea amet incididunt exercitation id ea irure ex consectetur
           ex. Ullamco ullamco ea excepteur excepteur elit ad veniam. Est commodo
           mollit veniam veniam nisi et tempor esse. Nisi fugiat aliquip dolor
         </Text>
-        <Text className="text-white/90 mb-4">
+        <Text className="text-black/90 mb-4">
           Mollit dolore exercitation fugiat ea sunt magna. Eiusmod irure fugiat
           velit nulla ea amet incididunt exercitation id ea irure ex consectetur
           ex. Ullamco ullamco ea excepteur excepteur elit ad veniam. Est commodo
           mollit veniam veniam nisi et tempor esse. Nisi fugiat aliquip dolor
         </Text>
-        <Text className="text-white/90 mb-4">
+        <Text className="text-black/90 mb-4">
           Mollit dolore exercitation fugiat ea sunt magna. Eiusmod irure fugiat
           velit nulla ea amet incididunt exercitation id ea irure ex consectetur
           ex. Ullamco ullamco ea excepteur excepteur elit ad veniam. Est commodo
           mollit veniam veniam nisi et tempor esse. Nisi fugiat aliquip dolor
         </Text>
-        <Text className="text-white/90 mb-4">
+        <Text className="text-black/90 mb-4">
           Mollit dolore exercitation fugiat ea sunt magna. Eiusmod irure fugiat
           velit nulla ea amet incididunt exercitation id ea irure ex consectetur
           ex. Ullamco ullamco ea excepteur excepteur elit ad veniam. Est commodo

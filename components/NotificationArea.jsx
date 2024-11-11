@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
 
-export function NotificationArea({mensaje}) {
+export function NotificationArea({notificacion}) {
     return  (
-         mensaje ? 
+         notificacion ? 
              <View className="items-center justify-center" style={{
                 height: 70,
                 padding:5,    
@@ -17,7 +17,7 @@ export function NotificationArea({mensaje}) {
                 alignItems: 'center',
                 borderTopLeftRadius: 10,
                 borderTopRightRadius: 10,
-            }}><Text className="text-white">{mensaje}</Text></View>
+            }}><Text className="text-white">{notificacion}</Text></View>
              : <></>
          
     )

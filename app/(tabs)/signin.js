@@ -1,10 +1,11 @@
 import { Text, TextInput, View, StyleSheet, Button, Alert } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Screen } from "../../components/Screen";
 import { useForm } from "../hooks/useForm";
 import { MAIL_VALIDATION, PASS_VALIDATION } from "../services/config";
 import { getLogin } from "../../lib/auth";
 import { NotificationArea } from "../../components/NotificationArea";
+import { AuthContext } from "../context/AuthContext";
 
 export default function SignIn() {
   const initialData = {
@@ -15,9 +16,6 @@ export default function SignIn() {
 
   const { form, errors, loading, setLoading, setErrors, handleChange } =
     useForm(initialData, onValidate);
-
-  const [response, setResponse] = useState(null);
-  const [mensaje, setMensaje] = useState(null);
 
   const onValidate = (form) => {
     let isError = false;
@@ -44,6 +42,11 @@ export default function SignIn() {
     return isError ? errors : null;
   };
 
+  const [response, setResponse] = useState(null);
+
+  // const { mensaje, setMensaje } = useContext(AuthContext);
+  const { isAuthenticated, mensaje, setMensaje } = useContext(AuthContext);
+
   const onSubmit = async () => {
     let validation = false;
     validation = onValidate(form);
@@ -55,16 +58,10 @@ export default function SignIn() {
         //Alert.alert(`Bienvenido ${result.message.name}, logueo exitoso`);
         console.log("error:", result.message.name);
         setMensaje(result.message.name);
-        const timer = setTimeout(() => {
-          setMensaje(null);
-        }, 4000); // 4 segundos
       } else {
         //Alert.alert(`Bienvenido ${result.message}, logueo fail`);
         console.log("error:", result.message);
         setMensaje(result.message);
-        const timer = setTimeout(() => {
-          setMensaje(null);
-        }, 4000); // 4 segundos
       }
     }
   };
@@ -72,9 +69,9 @@ export default function SignIn() {
   return (
     <Screen>
       <Text className="mb-10 text-center text-xl font-bold  mt-24">
-        Formulario de Login
+        Formulario de Login{" "}
+        {isAuthenticated ? "Cerrar sesión" : "Iniciar sesión"}
       </Text>
-
       <View style={styles.container}>
         <TextInput
           style={styles.input}
@@ -86,7 +83,6 @@ export default function SignIn() {
         ></TextInput>
         {errors.email && <Text style={styles.error}>{errors.email}</Text>}
       </View>
-
       <View style={styles.container}>
         <TextInput
           style={styles.input}
@@ -97,7 +93,6 @@ export default function SignIn() {
         />
         {errors.password && <Text style={styles.error}>{errors.password}</Text>}
       </View>
-
       <View className="mt-10 p-10 b-1">
         <Button title="Login" onPress={onSubmit} />
       </View>
@@ -106,7 +101,7 @@ export default function SignIn() {
             Respuesta: {JSON.stringify(response)}
           </Text>
         )} */}
-      <NotificationArea mensaje={mensaje}></NotificationArea>
+      <NotificationArea notificacion={mensaje}></NotificationArea>
     </Screen>
   );
 }
