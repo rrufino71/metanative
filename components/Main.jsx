@@ -1,5 +1,5 @@
 
-import { FlatList,View, ActivityIndicator,Pressable} from 'react-native';
+import { FlatList,View, ActivityIndicator,Pressable,Text} from 'react-native';
 import {Link} from 'expo-router';
 
 
@@ -14,20 +14,22 @@ import { Screen } from './Screen';
 
 
 
+
+
 export function Main() {
 
   const [games, setGames] = useState([]);
   const insets = useSafeAreaInsets();
 
-  useEffect(() => {
-    getLatestGames().then((games) => {
-      setGames(games);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getLatestGames().then((games) => {
+  //     setGames(games);
+  //   });
+  // }, []);
 
   return (
     <Screen>
-      {games.length === 0  ? (
+      {/* {games.length === 0  ? (
         <ActivityIndicator color={"#fff"} size={"large"}/>
       ): (
         // <ScrollView>{games.map(game => (<GameCard key={game.slug} game={game} />))}</ScrollView>)}
@@ -36,8 +38,11 @@ export function Main() {
         keyExtractor={(game) => game.slug}
         renderItem={({item}) => <GameCard game={item} />}
         />
-       )}
-
+       )}  */}
+        <View className="flex-1 justify-center items-center">
+           <Text className=" text-2xl font-bold text-center">Home</Text>
+        </View>
+      
     </Screen>
   );
 }

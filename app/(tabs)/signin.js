@@ -1,10 +1,10 @@
 import { Text, TextInput, View, StyleSheet, Button, Alert } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Screen } from "../../components/Screen";
 import { useForm } from "../hooks/useForm";
 import { MAIL_VALIDATION, PASS_VALIDATION } from "../services/config";
 import { getLogin } from "../../lib/auth";
-import { ScrollView } from "react-native-web";
+import { NotificationArea } from "../../components/NotificationArea";
 
 export default function SignIn() {
   const initialData = {
@@ -17,6 +17,7 @@ export default function SignIn() {
     useForm(initialData, onValidate);
 
   const [response, setResponse] = useState(null);
+  const [mensaje, setMensaje] = useState(null);
 
   const onValidate = (form) => {
     let isError = false;
@@ -51,14 +52,26 @@ export default function SignIn() {
       const result = await getLogin({ email: email, password: password });
       setResponse(result);
       if (result.status) {
-        Alert.alert(`Bienvenido ${result.message.name}, logueo exitoso`);
-      } else console.error(result.message);
+        //Alert.alert(`Bienvenido ${result.message.name}, logueo exitoso`);
+        console.log("error:", result.message.name);
+        setMensaje(result.message.name);
+        const timer = setTimeout(() => {
+          setMensaje(null);
+        }, 4000); // 4 segundos
+      } else {
+        //Alert.alert(`Bienvenido ${result.message}, logueo fail`);
+        console.log("error:", result.message);
+        setMensaje(result.message.name);
+        const timer = setTimeout(() => {
+          setMensaje(null);
+        }, 4000); // 4 segundos
+      }
     }
   };
 
   return (
     <Screen>
-      <Text className="text-white/90 mb-10 text-center text-xl font-bold  mt-24">
+      <Text className="mb-10 text-center text-xl font-bold  mt-24">
         Formulario de Login
       </Text>
 
@@ -93,6 +106,7 @@ export default function SignIn() {
             Respuesta: {JSON.stringify(response)}
           </Text>
         )} */}
+      <NotificationArea mensaje={mensaje}></NotificationArea>
     </Screen>
   );
 }
