@@ -61,7 +61,7 @@ export default function SignIn() {
       } else {
         //Alert.alert(`Bienvenido ${result.message}, logueo fail`);
         console.log("error:", result.message);
-        setMensaje(result.message.name);
+        setMensaje(result.message);
         const timer = setTimeout(() => {
           setMensaje(null);
         }, 4000); // 4 segundos
